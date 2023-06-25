@@ -1,0 +1,3 @@
+https://github.com/Cadulo/album-maker.git
+
+http://despliegue-album-maker.s3-website-us-east-1.amazonaws.com/
