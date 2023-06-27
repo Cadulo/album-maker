@@ -1,9 +1,10 @@
 import { useState, useContext } from "react";
-import { PageContext } from "../App";
+// import { PageContext } from "../App";
 import { S3Viewer } from "../components/S3Viewer";
+import { Link } from "react-router-dom";
 
 function Form() {
-  const { setPage } = useContext(PageContext);
+  // const { setPage } = useContext(PageContext);
   const [formData, setFormData] = useState({
     nombre: "",
     direccion: "",
@@ -181,9 +182,9 @@ function Form() {
         </button>
         <button
           className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded m-8"
-          onClick={() => setPage(1)}
+          // onClick={() => setPage(1)}
         >
-          Retroceder
+          <Link to="/"> Retroceder </Link>
         </button>
 
 

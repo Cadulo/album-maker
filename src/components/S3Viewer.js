@@ -1,7 +1,8 @@
 import React, { useState,useContext,useEffect } from 'react'
 import AWS from 'aws-sdk';
 import CardImageS3 from './CardImageS3';
-import { PageContext } from '../App';
+// import { PageContext } from '../App';
+import { Link } from "react-router-dom";
 
 AWS.config.update({
   accessKeyId: 'ASIATLQQJSZSBOSIGYMR',
@@ -13,7 +14,7 @@ AWS.config.update({
 export const S3Viewer = ({ showImages, showMessage }) => {
   const [listFiles, setListFiles] = useState([]);
   const [s3Domain, setS3Domain] = useState("");
-  const { setPage } = useContext(PageContext);
+  // const { setPage } = useContext(PageContext);
 
   const s3 = new AWS.S3();
 
@@ -78,9 +79,9 @@ export const S3Viewer = ({ showImages, showMessage }) => {
         )}
         <button
           className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded m-8"
-          onClick={()=>{setPage(3)}}
+          // onClick={()=>{setPage(3)}}
         >
-          Continuar
+          <Link to="/gallery"> Continuar</Link>
         </button>
       </div>
       )
