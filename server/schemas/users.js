@@ -1,8 +1,6 @@
 const mongoose = require('mongoose');
 
-const userSchema = mongoose.Schema({
-    first_name: String,
-    last_name: String,
+const userSchema = new mongoose.Schema({
     username: {
         type: String,
         required: true,
@@ -16,7 +14,9 @@ const userSchema = mongoose.Schema({
     password: {
         type: String,
         required: true,
-    }
+    },
+}, {
+    timestamps:true //add date of creation
 });
 
 const Users = new mongoose.model('user', userSchema); //Creo el modelo Users , definido por la coleccion user y el esquema users

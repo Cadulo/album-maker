@@ -9,6 +9,6 @@ const authController = require('./controllers/auth.controller')
 const app = express();
 app.use(morgan('dev')); //Muestra mensaje corto por consola
 app.use(express.json()) //Permite leer en formato json
-app.use('/', authController);
+app.use('/api', authController);
 
 module.exports=app;

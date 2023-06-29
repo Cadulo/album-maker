@@ -1,11 +1,22 @@
+const User = require("../schemas/users.js")
 
-function login(req,res){
-    console.log(req.body)
-    res.send('login')
+async function login(req, res) {
+    const {  username, email, password } = req.body
+   try {
+    const newUser = new User ({
+        username,
+        email,
+        password,
+    }) //Crea el usuario
+    await newUser.save() //Guarda el usuario en la db
+    res.send("registrando")
+   }
+   catch (error) {
+    console.log(error)
+   }
 }
 
-function register(req,res){
-    console.log(req.body)
+function register(req, res) {
     res.send('registrando')
 }
 
