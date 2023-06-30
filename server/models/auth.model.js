@@ -68,6 +68,20 @@ function logout(req,res) {
     return  res.sendStatus(200)
 }
 
+async function profile(req,res){
+
+   const userFound = await  User.findById(req.user.id) //Busca coincidencias por le id
+
+   if (!userFound) return res.status(400).json({ message: "User not found"})
+    res.json({id: userFound._id,
+        username: userFound.username,
+        email: userFound.email,
+        password:userFound.password,
+        createdAt: userFound.createdAt,
+        updatedAt: userFound.updatedAt})
+}
+
 exports.login = login;
 exports.register = register;
-exports.logout=logout;
+exports.logout =logout;
+exports.profile = profile;
