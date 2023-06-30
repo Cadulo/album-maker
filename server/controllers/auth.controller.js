@@ -6,4 +6,6 @@ router.post('/register',authModel.register);
 
 router.post('/login',authModel.login);
 
+router.post('/logout',authModel.logout)
+
 module.exports=router;
