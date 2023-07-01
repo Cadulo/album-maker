@@ -4,3 +4,5 @@ const API = 'http://localhost:5000/api'
 
 //Envio user al back
 export const registerRequest = user => axios.post(`${API}/register`,user) 
+
+export const loginRequest = user => axios.post(`${API}/login`,user) 

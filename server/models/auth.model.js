@@ -6,7 +6,8 @@ const { createAccessToken } = require("../middlewares/jwt.js")
 async function register(req, res) {
     const { username, email, password } = req.body
     try {
-
+        const userFound = await User.findOne({email});
+        if (userFound) return res.status(400).json(["The email alredy exists"])
         const passwordHash = await bcrypt.hash(password, 10) //Encripta el password, ejecuta el algoritmo 10 veces
 
         const newUser = new User({
