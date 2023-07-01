@@ -7,7 +7,7 @@ const { registerSchema, loginSchema } = require('../schemas/auth.schema.js')
 
 router.post('/register', validateSchema(registerSchema), authModel.register);
 // Antes de registrarse o logearse valido los datos usando zod, envio el esquema requerido y valido mediante la funcion importada
-router.post('/login', authModel.login);
+router.post('/login', validateSchema(loginSchema), authModel.login);
 
 router.post('/logout', authModel.logout);
 
