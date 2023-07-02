@@ -22,7 +22,7 @@ function Login() {
     return (
         <div >
             <div className="flex justify-center  pt-10"> <Switcher></Switcher></div>
-            <div className="text-2xl font-bold text-center my-5 dark:text-white">Bienvenido a Album-Maker, ¡Guardamos tus recuerdos! </div>
+            <div className="text-2xl font-bold text-center my-5 dark:text-white">Bienvenido a Album-Maker ¡Guardamos tus recuerdos! </div>
             {
                 loginErrors.map((error, i) => (
                     <div className="bg-red-500 text-white text-center" key={i}>

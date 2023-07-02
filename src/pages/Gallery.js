@@ -1,11 +1,9 @@
 import React, { useEffect, useContext } from 'react'
 import { useState } from 'react';
-// import { PageContext } from "../App";
 import { S3Viewer } from "../components/S3Viewer";
 import { Link } from "react-router-dom";
 
 export const Gallery = () => {
-    // const { setPage } = useContext(PageContext);
     const [showImages,setShowImages] = useState(false)
 
     return (
@@ -23,7 +21,6 @@ export const Gallery = () => {
             <div className="flex justify-center">
                 <button
                     className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded m-8"
-                    // onClick={() => setPage(2)}
                 >
                     <Link to="/form"> Retroceder </Link>
                 </button>

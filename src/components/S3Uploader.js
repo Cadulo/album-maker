@@ -2,6 +2,7 @@ import AWS from 'aws-sdk';
 import { useState,useContext } from 'react';
 import { ImagesContext } from "../pages/Upload";
 import Continue from "./Continue"
+import { useAuth } from "../context/AuthContext";
 
 AWS.config.update({
     accessKeyId: 'ASIATLQQJSZSBOSIGYMR',
@@ -11,14 +12,15 @@ AWS.config.update({
   });
 
 export const S3Uploader = () => {
+    const { upLoadToMongo } = useAuth();
     const s3 = new AWS.S3();
     const {images} = useContext(ImagesContext);
     const [imageUrl, setImageUrl] = useState(null);
 
     const uploadToS3 = async () => {
         await Promise.all(
-            images.map(async (imageDataURL) => {
-                const file = await fetch(imageDataURL)
+            images.map(async (imageData) => {
+                const file = await fetch(imageData)
                     .then((res) => res.blob())
                     .then((blob) => new File([blob], `image_${Date.now()}.jpg`, { type: blob.type }));
 
@@ -32,11 +34,14 @@ export const S3Uploader = () => {
                 setImageUrl(Location);
                 console.log('Cargando a S3:', Location);
             })
-        );
-    };
+        )
+        };
+
+    
+
     return (
         <div>
-            <Continue uploadToS3={uploadToS3}></Continue>
+            <Continue uploadToS3={uploadToS3} ></Continue>
         </div>
     );
 

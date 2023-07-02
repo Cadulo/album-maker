@@ -1,5 +1,7 @@
 import { createContext, useState, useContext, useEffect } from 'react'
 import { registerRequest, loginRequest, verifyTokenRequest } from '../api/auth'
+import { imageMongo,getImagesMongo } from '../api/images'
+
 import Cookies from 'js-cookie'
 
 export const AuthContext = createContext()
@@ -54,6 +56,29 @@ export const AuthProvider = ({ children }) => {
         setIsAuthenticated(false);
       };
 
+    const upLoadToMongo = async (imageDataUrl) =>{
+      
+        try {
+            const res = await imageMongo(imageDataUrl)
+            console.log(res.data)
+
+        } catch (error) {
+            console.log(error.response)
+        }
+    }
+
+    const downLoadFromMongo = async () => {
+        try {
+            const res = await getImagesMongo()
+            return res.data
+        }
+        catch(error) {
+            console.log(error.response)
+            throw error;
+        }
+    }
+
+
     //Despues de 5 segundos se eliminan los errores para que deje de ense;ar en pantalla
     useEffect(() => {
         if (errors.length > 0) {
@@ -107,7 +132,9 @@ export const AuthProvider = ({ children }) => {
             user,
             isAuthenticated,
             errors,
-            isLoading
+            isLoading,
+            upLoadToMongo,
+            downLoadFromMongo
         }}>
             {children}
         </AuthContext.Provider>
