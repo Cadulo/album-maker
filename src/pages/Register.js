@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form"
 import { useAuth } from "../context/AuthContext";
 import { useEffect } from "react"
 import { useNavigate, Link } from "react-router-dom";
+import Switcher from "../components/Switcher";
 
 function Register() {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -19,6 +20,8 @@ function Register() {
 
     return (
         <div>
+            <div className="flex justify-center  pt-10"> <Switcher></Switcher></div>
+            <div className="text-2xl font-bold text-center my-5 dark:text-white">¡Registrate y guarda tus mejores recuerdos!</div>
             {
                 registerErrors.map((error, i) => (
                     <div className="bg-red-500 text-white text-center" key={i}>

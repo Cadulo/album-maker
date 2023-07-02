@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 // import { PageContext } from "../App";
 import { S3Viewer } from "../components/S3Viewer";
 import { Link } from "react-router-dom";
-
+import Navbar from '../components/navbar.js'
 function Form() {
   // const { setPage } = useContext(PageContext);
   const [formData, setFormData] = useState({
@@ -57,6 +57,7 @@ function Form() {
 
   return (
     <div className=" dark:bg-slate-900">
+      <Navbar></Navbar>
       <form onSubmit={handleSubmit} className="max-w-md mx-auto mt-8">
         <h2 className="text-2xl font-bold mb-4  dark:text-white">Datos de facturación</h2>
         <div className="mb-4">

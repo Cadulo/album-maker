@@ -11,6 +11,8 @@ router.post('/login', validateSchema(loginSchema), authModel.login);
 
 router.post('/logout', authModel.logout);
 
+router.get("/verify", authModel.verifyToken)
+
 router.get('/profile', authRequired, authModel.profile)
 
 module.exports = router;

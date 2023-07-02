@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form"
 import { useAuth } from "../context/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
 import { useEffect } from "react"
+import Switcher from "../components/Switcher";
 
 function Login() {
 
@@ -13,14 +14,15 @@ function Login() {
         if (isAuthenticated) navigate("/")
     }, [isAuthenticated])
 
-
     const onSubmit = handleSubmit(async (data) => {
         await signin(data)
         
     })
 
     return (
-        <div>
+        <div >
+            <div className="flex justify-center  pt-10"> <Switcher></Switcher></div>
+            <div className="text-2xl font-bold text-center my-5 dark:text-white">Bienvenido a Album-Maker, ¡Guardamos tus recuerdos! </div>
             {
                 loginErrors.map((error, i) => (
                     <div className="bg-red-500 text-white text-center" key={i}>

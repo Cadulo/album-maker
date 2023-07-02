@@ -1,14 +1,14 @@
 import { useState, createContext } from "react";
-import {S3Uploader} from "../components/S3Uploader";
+import { S3Uploader } from "../components/S3Uploader";
 import { S3Viewer } from "../components/S3Viewer";
 import { Link } from "react-router-dom";
 import Grid from "../components/Grid";
-
+import Navbar from '../components/navbar.js'
 export const ImagesContext = createContext([]);
 
 function Upload() {
     const [images, setImages] = useState([]);
-    const [showImages,setShowImages] = useState(false)
+    const [showImages, setShowImages] = useState(false)
 
     const onChange = async (e) => {
         const files = Array.from(e.target.files);
@@ -34,10 +34,11 @@ function Upload() {
         });
     };
 
-      
+
     return (
 
-        <div className="container mx-auto px-4  dark:text-white">
+        <div className="container mx-auto px-4  dark:text-white  dark:bg-slate-900">
+           <Navbar></Navbar>
             <div className="relative h-60 w-75 border-4 border-gray-300 mt-16">
                 <input className="absolute inset-0 opacity-0 cursor-pointer" type="file" multiple onChange={onChange} />
                 <div className="flex items-center justify-center h-full">
@@ -45,7 +46,7 @@ function Upload() {
                 </div>
             </div>
 
-            <ImagesContext.Provider value={{ images, setImages}}>
+            <ImagesContext.Provider value={{ images, setImages }}>
                 <S3Uploader></S3Uploader>
                 <Grid ></Grid>
                 {/* <div className="flex justify-center">
