@@ -3,6 +3,8 @@ import { useState, useContext } from "react";
 import { S3Viewer } from "../components/S3Viewer";
 import { Link } from "react-router-dom";
 import Navbar from '../components/navbar.js'
+import { MongoViewer } from "../components/MongoViewer";
+
 function Form() {
   // const { setPage } = useContext(PageContext);
   const [formData, setFormData] = useState({
@@ -203,7 +205,7 @@ function Form() {
               Ciudad de envio: {formData.ciudadEnvio}
             </div>
           </div>
-          <S3Viewer showMessage={showMessage}></S3Viewer>
+          <MongoViewer showMessage={showMessage}></MongoViewer>
         </div>
 
       )

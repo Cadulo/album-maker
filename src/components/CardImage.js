@@ -4,7 +4,6 @@ function CardImage(props) {
         props.onDelete()
     }
 
-
 return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg">
         <img src={props.imageDataURL} className="w-50 h-48 object-cover" alt="" />

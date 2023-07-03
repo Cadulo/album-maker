@@ -1,6 +1,6 @@
 import Upload from "./pages/Upload.js";
 import Form from "./pages/Form.js";
-import { Gallery } from "./pages/Gallery.js";
+import { Resume} from "./pages/Resume.js";
 import Register from "./pages/Register.js";
 import Login from "./pages/Login.js";
 import { AuthProvider } from "./context/AuthContext.js";
@@ -25,7 +25,7 @@ function App() {
                     <Route element={<ProtectedRoute />}>
                         <Route path="/" element={<Upload />}></Route>
                         <Route path="/form" element={<Form />}></Route>
-                        <Route path="/gallery" element={<Gallery />}></Route>
+                        <Route path="/resume" element={<Resume />}></Route>
                     </Route>
                 </Routes>
             </div>

@@ -1,9 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
-import AWS from "aws-sdk";
 import CardImageS3 from "./CardImageS3";
-// import { PageContext } from '../App';
 import { Link } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import AWS from 'aws-sdk';
 
 AWS.config.update({
   accessKeyId: "ASIATLQQJSZSBOSIGYMR",
@@ -16,7 +14,6 @@ AWS.config.update({
 export const S3Viewer = ({ showImages, showMessage }) => {
   const [listFiles, setListFiles] = useState([]);
   const [s3Domain, setS3Domain] = useState("");
-  const { downLoadFromMongo } = useAuth();
 
   const s3 = new AWS.S3();
 
@@ -45,22 +42,22 @@ export const S3Viewer = ({ showImages, showMessage }) => {
     return url;
   };
 
-  const deleteFromS3 = (key) => {
-    const params = {
-      Bucket: "album-maker-carlos",
-      Key: key,
-    };
+  // const deleteFromS3 = (key) => {
+  //   const params = {
+  //     Bucket: "album-maker-carlos",
+  //     Key: key,
+  //   };
 
-    s3.deleteObject(params, (err, data) => {
-      if (err) {
-        console.log(err, err.stack, key);
-      } else {
-        console.log("Imagen eliminada con éxito:", key);
-        // Actualizar la lista de archivos después de eliminar la imagen
-        setListFiles((prevList) => prevList.filter((file) => file.Key !== key));
-      }
-    });
-  };
+  //   s3.deleteObject(params, (err, data) => {
+  //     if (err) {
+  //       console.log(err, err.stack, key);
+  //     } else {
+  //       console.log("Imagen eliminada con éxito:", key);
+  //       // Actualizar la lista de archivos después de eliminar la imagen
+  //       setListFiles((prevList) => prevList.filter((file) => file.Key !== key));
+  //     }
+  //   });
+  // };
 
   return (
     <div className="dark:bg-slate-900 dark:text-white">
@@ -79,9 +76,9 @@ export const S3Viewer = ({ showImages, showMessage }) => {
               </ul>
             </div>
           )}
-          <button className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded m-8">
+          {/* <button className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded m-8">
             <Link to="/gallery"> Continuar</Link>
-          </button>
+          </button> */}
         </div>
       )}
       {showImages && (
@@ -92,7 +89,7 @@ export const S3Viewer = ({ showImages, showMessage }) => {
                 <CardImageS3
                   key={index}
                   imageDataURL={formatUrl(name.Key)}
-                  deleteFromS3={deleteFromS3}
+                  // deleteFromS3={deleteFromS3}
                   imageKey={name.Key}
                 ></CardImageS3>
               ))}

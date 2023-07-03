@@ -1,23 +1,23 @@
 import React, { useState, useContext } from "react";
 import { ImagesContext } from "../pages/Upload";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../context/AuthContext"
+import { S3Uploader } from "../api/s3";
 
 
 import { Link } from "react-router-dom";
 
-function Continue({ uploadToS3, uploadToMongo }) {
-    const { images } = useContext(ImagesContext);
-    
-    const [isLoading, setIsLoading] = useState(false);
+function Continue({ uploadToS3 }) {
+    const { images } = useContext(ImagesContext); 
+    const [isLoading, setIsLoading] = useState(false); //En caso que las imagenes se esten cargando en S3
     const [showContinue, setShowContinue] = useState(true)
-    const { upLoadToMongo } = useAuth();
+    // const { upLoadToMongo } = useAuth();
     const handleContinue = async () => {
         setIsLoading(true);
         try {
-            // await uploadToS3();
-            for (const imageDataURL of images) {
-                    await upLoadToMongo(imageDataURL);
-            }
+            await S3Uploader(images);
+            // for (const imageDataURL of images) {
+            //         await upLoadToMongo(imageDataURL);
+            // }
             setShowContinue(false)
         } catch (error) {
             console.log("Error al cargar a S3:", error);

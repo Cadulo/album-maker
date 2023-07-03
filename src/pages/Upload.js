@@ -1,5 +1,5 @@
 import { useState, createContext } from "react";
-import { S3Uploader } from "../components/S3Uploader";
+import Continue from "../components/Continue"
 import { MongoViewer} from "../components/MongoViewer"
 import Grid from "../components/Grid";
 import Navbar from "../components/navbar.js";
@@ -51,7 +51,7 @@ function Upload() {
       </div>
 
       <ImagesContext.Provider value={{ images, setImages }}>
-        <S3Uploader></S3Uploader>
+        <Continue></Continue>
         <Grid></Grid>
         <div className="flex justify-center">
           <button

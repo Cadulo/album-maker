@@ -1,8 +1,9 @@
 import { useAuth } from "../context/AuthContext";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import CardImage from "./CardImage";
 
-export const MongoViewer = ({ showImages }) => {
+export const MongoViewer = ({ showImages,showMessage }) => {
   const { downLoadFromMongo } = useAuth();
   const [listFiles, setListFiles] = useState([]);
 
@@ -16,12 +17,22 @@ export const MongoViewer = ({ showImages }) => {
         console.error("Error al descargar desde MongoDB:", error);
       }
     };
-
     fetchData();
   }, []);
 
   return (
-    <div>
+    <div className="dark:bg-slate-900 dark:text-white">
+       {showMessage && (
+        <div className="grid  grid-col-1 justify-center">
+          <div className="text-center">
+            Tienes un total de {listFiles.length} imagenes, el cual tiene un
+            costo de {listFiles.length * 2.5}
+          </div>
+          <button className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded m-8">
+            <Link to="/resume"> Continuar</Link>
+          </button>
+        </div>
+      )}
       {showImages && (
         <div className="flex justify-center mt-4 mx-4">
           {listFiles && listFiles.length > 0 && (
