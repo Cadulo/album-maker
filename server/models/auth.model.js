@@ -1,4 +1,4 @@
-const User = require("../schemas/users.js")
+const User = require("../schemas/users.schema.js")
 const bcrypt = require('bcryptjs') //Modulo para encriptar password
 const jwt = require("jsonwebtoken")
 const { createAccessToken } = require("../middlewares/jwt.js")
