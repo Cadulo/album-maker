@@ -15,4 +15,5 @@ router.get("/verify", authModel.verifyToken)
 
 router.get('/profile', authRequired, authModel.profile)
 
+
 module.exports = router;
