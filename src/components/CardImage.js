@@ -1,13 +1,16 @@
 import { useAuth } from "../context/AuthContext";
-function CardImage({ onDelete, index, key, imageDataURL }) {
+function CardImage({ onDelete, index, id, imageDataURL }) {
   const { deleteFromMongo } = useAuth();
 
   const handleDelete = () => {
     try {
       onDelete(index);
-      console.log(key)
     } catch (error) {
-      deleteFromMongo(key);
+      try {
+        deleteFromMongo(id);
+      } catch (error) {
+        console.log(error)
+      }
     }
   };
 

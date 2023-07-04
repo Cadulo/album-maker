@@ -74,18 +74,18 @@ export const AuthProvider = ({ children }) => {
         }
         catch(error) {
             console.log(error.response)
-            throw error;
         }
     }
 
     const deleteFromMongo = async (id) => {
         
         try {
+            console.log(id)
             const res = await deleteImageMongo(id);  
             return res
         } catch (error) {
             console.log(error);
-            throw error;
+          
         }
     }
 

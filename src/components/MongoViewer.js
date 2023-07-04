@@ -39,6 +39,7 @@ export const MongoViewer = ({ showImages,showMessage }) => {
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
               {listFiles.map((file) => (
                 <CardImage
+                  id={file._id}
                   key={file._id}
                   imageDataURL={file.imageData}
                 ></CardImage>

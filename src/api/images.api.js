@@ -4,4 +4,4 @@ export const imageMongo = image => axios.post('/saveImage', { imageDataURL: imag
 
 export const getImagesMongo = () => axios.get('/getImages')
 
-export const deleteImageMongo = (id) => axios.delete(`/deleteImages/${id}`)
+export const deleteImageMongo = (id) => axios.delete(`/deleteImage/${id}`)
