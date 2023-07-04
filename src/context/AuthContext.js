@@ -1,6 +1,6 @@
 import { createContext, useState, useContext, useEffect } from 'react'
 import { registerRequest, loginRequest, verifyTokenRequest } from '../api/auth.api'
-import { imageMongo,getImagesMongo } from '../api/images.api'
+import { imageMongo,getImagesMongo,deleteImageMongo } from '../api/images.api'
 
 import Cookies from 'js-cookie'
 
@@ -78,6 +78,17 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
+    const deleteFromMongo = async (id) => {
+        
+        try {
+            const res = await deleteImageMongo(id);  
+            return res
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+    }
+
 
     //Despues de 5 segundos se eliminan los errores para que deje de ense;ar en pantalla
     useEffect(() => {
@@ -134,7 +145,8 @@ export const AuthProvider = ({ children }) => {
             errors,
             isLoading,
             upLoadToMongo,
-            downLoadFromMongo
+            downLoadFromMongo,
+            deleteFromMongo
         }}>
             {children}
         </AuthContext.Provider>
