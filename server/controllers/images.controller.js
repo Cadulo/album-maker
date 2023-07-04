@@ -7,6 +7,6 @@ router.post("/saveImage" ,authRequired, imageModel.saveImage)
 
 router.get("/getImages",authRequired, imageModel.getImages)
 
-router.delete("/delete/:id",authRequired, imageModel.deleteImage)
+router.delete("/deleteImage/:id",authRequired, imageModel.deleteImage)
 
 module.exports = router;

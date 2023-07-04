@@ -1,6 +1,6 @@
 import { createContext, useState, useContext, useEffect } from 'react'
-import { registerRequest, loginRequest, verifyTokenRequest } from '../api/auth'
-import { imageMongo,getImagesMongo } from '../api/images'
+import { registerRequest, loginRequest, verifyTokenRequest } from '../api/auth.api'
+import { imageMongo,getImagesMongo } from '../api/images.api'
 
 import Cookies from 'js-cookie'
 
