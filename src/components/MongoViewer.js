@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import CardImage from "./CardImage";
 
+
 export const MongoViewer = ({ showImages,showMessage }) => {
   const { downLoadFromMongo } = useAuth();
   const [listFiles, setListFiles] = useState([]);
@@ -18,9 +19,10 @@ export const MongoViewer = ({ showImages,showMessage }) => {
       }
     };
     fetchData();
-  }, []);
+  }, [showImages]);
 
   return (
+    
     <div className="dark:bg-slate-900 dark:text-white">
        {showMessage && (
         <div className="grid  grid-col-1 justify-center">
@@ -37,11 +39,14 @@ export const MongoViewer = ({ showImages,showMessage }) => {
         <div className="flex justify-center mt-4 mx-4">
           {listFiles && listFiles.length > 0 && (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
-              {listFiles.map((file) => (
+              {listFiles.map((file,index) => (
                 <CardImage
                   id={file._id}
                   key={file._id}
                   imageDataURL={file.imageData}
+                  indexMongo = {index}
+                  listFiles = {listFiles }
+                  setListFiles = {setListFiles}
                 ></CardImage>
               ))}
             </div>
@@ -49,5 +54,6 @@ export const MongoViewer = ({ showImages,showMessage }) => {
         </div>
       )}
     </div>
+ 
   );
 };

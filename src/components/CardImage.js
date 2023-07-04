@@ -1,5 +1,8 @@
+
 import { useAuth } from "../context/AuthContext";
-function CardImage({ onDelete, index, id, imageDataURL }) {
+
+
+function CardImage({ onDelete, index, id,indexMongo, imageDataURL, listFiles, setListFiles }) {
   const { deleteFromMongo } = useAuth();
 
   const handleDelete = () => {
@@ -8,6 +11,9 @@ function CardImage({ onDelete, index, id, imageDataURL }) {
     } catch (error) {
       try {
         deleteFromMongo(id);
+        const updatedImages = [...listFiles];
+        updatedImages.splice(indexMongo, 1); // Elimina la imagen en el índice dado
+        setListFiles(updatedImages);
       } catch (error) {
         console.log(error)
       }
