@@ -1,4 +1,4 @@
-import { createContext, useState, useContext, useEffect } from 'react'
+import { createContext, useState, useContext} from 'react'
 import { imageMongo,getImagesMongo,deleteImageMongo } from '../api/images.api'
 
 export const ImageContext = createContext()
@@ -14,7 +14,6 @@ export const useImage = () => {
 export const ImageProvider = ({children}) => {
     const [images, setImages] = useState([]);
     const [showImages, setShowImages] = useState(false);
-    const [showMessage, setShowMessage] = useState(false)
 
     const upLoadToMongo = async (imageDataUrl) =>{
       
@@ -55,8 +54,6 @@ export const ImageProvider = ({children}) => {
             setImages,
             showImages, 
             setShowImages,
-            showMessage, 
-            setShowMessage,
             upLoadToMongo,
             downLoadFromMongo,
             deleteFromMongo

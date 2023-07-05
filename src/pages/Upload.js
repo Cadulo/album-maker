@@ -47,15 +47,6 @@ function Upload() {
 
         <Continue></Continue>
         <Grid></Grid>
-        {/* <div className="flex justify-center">
-          <button
-            className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded m-8"
-            onClick={() => setShowImages(true)}
-          >
-           Ver pedido anterior
-          </button>
-        </div>
-        <MongoViewer showImages={showImages}></MongoViewer> */}
 
     </div>
   );

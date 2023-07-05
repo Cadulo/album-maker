@@ -3,7 +3,7 @@ import { useImage } from "../context/ImageContext";
 import { useNavigate} from "react-router-dom";
 
 function Continue({ uploadToS3 }) {
-    const [isLoading, setIsLoading] = useState(false); //En caso que las imagenes se esten cargando en S3
+    const [isLoading, setIsLoading] = useState(false); 
     const { images } = useImage();
     const navigate = useNavigate()
     const handleContinue = async () => {
@@ -13,7 +13,6 @@ function Continue({ uploadToS3 }) {
         } catch (error) {
             console.log("Error al cargar a las imagenes", error);
 
-         
         }
 
     };
@@ -25,17 +24,7 @@ function Continue({ uploadToS3 }) {
                 {isLoading ? (
                     <div>
                         <div className="text-center text-2xl font-bold my-8">Cargando...</div>
-                        {/* {showContinue ? (<div className="text-center text-2xl font-bold my-8">Cargando...</div>) :
-                            (<button
-                                className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded m-8"
-                            >
-                                <Link to="/form" >
-                                    Continuar
-                                </Link>
-                            </button>
-                            )} */}
                     </div>
-
                 ) : (
                     <div className="flex">
                         <div className="text-center text-2xl font-bold my-8">
@@ -47,9 +36,7 @@ function Continue({ uploadToS3 }) {
                         >
                             Continuar
                         </button>
-
                     </div>
-
 
                 )}
             </div>

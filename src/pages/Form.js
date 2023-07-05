@@ -1,12 +1,9 @@
 import { useState } from "react";
-// import { PageContext } from "../App";
-
 import { Link } from "react-router-dom";
 import Navbar from "../components/navbar.js";
-import { useImage } from "../context/ImageContext";
 
 function Form() {
-  // const { setPage } = useContext(PageContext);
+  
   const [formData, setFormData] = useState({
     nombre: "",
     direccion: "",
@@ -14,8 +11,8 @@ function Form() {
     codigoPostal: "",
     repeatData: false,
   });
-  const { setShowImages, showMessage, setShowMessage } = useImage();
-  setShowImages(false);
+  const [showMessage, setShowMessage] = useState(false)
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     const fieldValue = value;

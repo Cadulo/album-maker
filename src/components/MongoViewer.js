@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import CardImage from "./CardImage";
 import { useImage } from "../context/ImageContext";
 
 export const MongoViewer = () => {
-  const { showImages,showMessage,  downLoadFromMongo } = useImage();
+  const { showImages, downLoadFromMongo } = useImage();
   const [listFiles, setListFiles] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        
         const res = await downLoadFromMongo();
         console.log(res);
+      
         setListFiles(res);
       } catch (error) {
         console.error("Error al descargar desde MongoDB:", error);
@@ -21,35 +22,32 @@ export const MongoViewer = () => {
   }, [showImages]);
 
   return (
-    
     <div className="dark:bg-slate-900 dark:text-white">
-       {showMessage && (
-        <div className="grid  grid-col-1 justify-center">
-          <div className="text-center">
-            Tienes un total de {listFiles.length} imagenes, el cual tiene un
-            costo de {listFiles.length * 2.5}
+      {showImages && listFiles && listFiles.length > 0 && (
+        <>
+          {" "}
+          <div className="grid  grid-col-1 justify-center">
+            <div className="text-center">
+              Tienes un total de {listFiles.length} imagenes, el cual tiene un
+              costo de {listFiles.length * 2.5}
+            </div>
           </div>
-        </div>
-      )}
-      {showImages && (
-        <div className="flex justify-center mt-4 mx-4">
-          {listFiles && listFiles.length > 0 && (
+          <div className="flex justify-center mt-4 mx-4">
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
-              {listFiles.map((file,index) => (
+              {listFiles.map((file, index) => (
                 <CardImage
                   id={file._id}
                   key={file._id}
                   imageDataURL={file.imageData}
-                  indexMongo = {index}
-                  listFiles = {listFiles }
-                  setListFiles = {setListFiles}
+                  indexMongo={index}
+                  listFiles={listFiles}
+                  setListFiles={setListFiles}
                 ></CardImage>
               ))}
             </div>
-          )}
-        </div>
+          </div>
+        </>
       )}
     </div>
- 
   );
 };
