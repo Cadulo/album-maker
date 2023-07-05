@@ -12,7 +12,7 @@ function Login() {
 
     useEffect(() => {
         if (isAuthenticated) navigate("/")
-    }, [isAuthenticated])
+    }, [isAuthenticated,navigate])
 
     const onSubmit = handleSubmit(async (data) => {
         await signin(data)
@@ -39,7 +39,7 @@ function Login() {
                     <input
                         type="email" id="email"
                         {...register("email", { required: true })}
-                        className="w-full p-2 border border-gray-300 rounded mb-2"
+                        className="w-full p-2 border border-gray-300 rounded mb-2  dark:text-black"
                     />
                     {errors.email && (
                         <p className="text-red-500"> email is required</p>
@@ -51,7 +51,7 @@ function Login() {
                     <input
                         type="password" id="password"
                         {...register("password", { required: true })}
-                        className="w-full p-2 border border-gray-300 rounded mb-2"
+                        className="w-full p-2 border border-gray-300 rounded mb-2  dark:text-black"
                     />
                     {errors.password && (
                         <p className="text-red-500 "> password is required</p>

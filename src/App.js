@@ -17,7 +17,7 @@ function App() {
     return (
         <AuthProvider>
             <ImageProvider>
-            <div>
+            <div className="px-10 dark:bg-slate-900  dark:text-white">
                 <Routes>
                     <Route path="/register" element={<Register />}></Route>
                     <Route path="/login" element={<Login />}></Route>

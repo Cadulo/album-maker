@@ -1,11 +1,9 @@
 import { useState } from "react";
 // import { PageContext } from "../App";
-import { S3Viewer } from "../components/S3Viewer";
+
 import { Link } from "react-router-dom";
-import Navbar from '../components/navbar.js'
-import { MongoViewer } from "../components/MongoViewer";
+import Navbar from "../components/navbar.js";
 import { useImage } from "../context/ImageContext";
-import { Viewer } from "../components/Viewer";
 
 function Form() {
   // const { setPage } = useContext(PageContext);
@@ -16,18 +14,16 @@ function Form() {
     codigoPostal: "",
     repeatData: false,
   });
-  const {setShowImages, showMessage, setShowMessage,upLoadToMongo} = useImage();
-  // const [showMessage, setShowMessage] = useState(false)
-  setShowImages(false)
+  const { setShowImages, showMessage, setShowMessage } = useImage();
+  setShowImages(false);
   const handleChange = (e) => {
     const { name, value } = e.target;
     const fieldValue = value;
-    console.log(e.target)
-    console.log(formData)
+    console.log(e.target);
+    console.log(formData);
     setFormData((prevData) => ({
       ...prevData,
       [name]: fieldValue,
-
     }));
   };
 
@@ -57,14 +53,16 @@ function Form() {
   };
 
   const message = () => {
-    setShowMessage(true)
-  }
+    setShowMessage(true);
+  };
 
   return (
-    <div className=" dark:bg-slate-900">
+    <div className="container mx-auto dark:text-white  dark:bg-slate-900">
       <Navbar></Navbar>
       <form onSubmit={handleSubmit} className="max-w-md mx-auto mt-8">
-        <h2 className="text-2xl font-bold mb-4  dark:text-white">Datos de facturación</h2>
+        <h2 className="text-2xl font-bold mb-4  dark:text-white">
+          Datos de facturación
+        </h2>
         <div className="mb-4">
           <label htmlFor="nombre" className="block mb-2  dark:text-white">
             Nombre completo:
@@ -76,7 +74,7 @@ function Form() {
             value={formData.nombre}
             onChange={handleChange}
             required
-            className="w-full p-2 border border-gray-300 rounded"
+            className="w-full p-2 border border-gray-300 rounded  dark:text-black"
           />
         </div>
         <div className="mb-4">
@@ -90,7 +88,7 @@ function Form() {
             value={formData.direccion}
             onChange={handleChange}
             required
-            className="w-full p-2 border border-gray-300 rounded"
+            className="w-full p-2 border border-gray-300 rounded  dark:text-black"
           />
         </div>
         <div className="mb-4">
@@ -104,7 +102,7 @@ function Form() {
             value={formData.ciudad}
             onChange={handleChange}
             required
-            className="w-full p-2 border border-gray-300 rounded"
+            className="w-full p-2 border border-gray-300 rounded dark:text-black"
           />
         </div>
         <div className="mb-4">
@@ -118,7 +116,7 @@ function Form() {
             value={formData.codigoPostal}
             onChange={handleChange}
             required
-            className="w-full p-2 border border-gray-300 rounded"
+            className="w-full p-2 border border-gray-300 rounded  dark:text-black"
           />
         </div>
         <div className="mb-4 flex items-center">
@@ -134,10 +132,15 @@ function Form() {
             Utilizar los mismos datos de facturación para la entrega
           </label>
         </div>
-        <h2 className="text-2xl font-bold mb-4  dark:text-white">Datos de envío</h2>
+        <h2 className="text-2xl font-bold mb-4  dark:text-white">
+          Datos de envío
+        </h2>
         <div className="flex mb-4">
           <div className="mr-4">
-            <label htmlFor="direccionEnvio" className="block mb-2  dark:text-white">
+            <label
+              htmlFor="direccionEnvio"
+              className="block mb-2  dark:text-white"
+            >
               Dirección:
             </label>
             <input
@@ -147,7 +150,7 @@ function Form() {
               value={formData.direccionEnvio}
               onChange={handleChange}
               readOnly={formData.repeatData}
-              className="w-full p-2 border border-gray-300 rounded"
+              className="w-full p-2 border border-gray-300 rounded  dark:text-black"
             />
           </div>
           <div className="mr-4">
@@ -161,11 +164,14 @@ function Form() {
               value={formData.ciudadEnvio}
               onChange={handleChange}
               readOnly={formData.repeatData}
-              className="w-full p-2 border border-gray-300 rounded"
+              className="w-full p-2 border border-gray-300 rounded  dark:text-black"
             />
           </div>
           <div>
-            <label htmlFor="codigoPostalEnvio" className="block mb-2 dark:text-white">
+            <label
+              htmlFor="codigoPostalEnvio"
+              className="block mb-2 dark:text-white"
+            >
               Código Postal:
             </label>
             <input
@@ -175,7 +181,7 @@ function Form() {
               value={formData.codigoPostalEnvio}
               onChange={handleChange}
               readOnly={formData.repeatData}
-              className="w-full p-2 border border-gray-300 rounded"
+              className="w-full p-2 border border-gray-300 rounded  dark:text-black"
             />
           </div>
         </div>
@@ -186,33 +192,24 @@ function Form() {
         >
           Resumen del pedido
         </button>
-        <button
-          className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded m-8"
-        >
+        <button className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded m-8">
           <Link to="/"> Retroceder </Link>
         </button>
-
-
       </form>
       {showMessage && (
         <div className=" dark:text-white">
           <div className="text-center">
-            <div>
-              Pedido a nombre de: {formData.nombre}
-            </div>
-            <div>
-              Direccion de envio: {formData.direccionEnvio}
-            </div>
-            <div>
-              Ciudad de envio: {formData.ciudadEnvio}
-            </div>
+            <div>Pedido a nombre de: {formData.nombre}</div>
+            <div>Direccion de envio: {formData.direccionEnvio}</div>
+            <div>Ciudad de envio: {formData.ciudadEnvio}</div>
           </div>
-          <Viewer></Viewer>
-          {/* <MongoViewer ></MongoViewer> */}
+          <div className="flex justify-center">
+            <button className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded m-8">
+              <Link to="/resume"> Continuar</Link>
+            </button>
+          </div>
         </div>
-
-      )
-      }
+      )}
     </div>
   );
 }

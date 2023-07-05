@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import CardImage from "./CardImage";
 import { useImage } from "../context/ImageContext";
 
 export const Viewer = () => {
-  const { images, setImages, showImages, showMessage } = useImage();
-
+  const { images, setImages, showImages,setShowImages,setShowMessage,showMessage } = useImage();
+  setShowImages(true)
+  setShowMessage(true)
   const deleteImage = (index) => {
     const updatedImages = [...images];
     updatedImages.splice(index, 1); // Elimina la imagen en el índice dado
@@ -20,9 +19,7 @@ export const Viewer = () => {
             Tienes un total de {images.length} imagenes, el cual tiene un costo
             de {images.length * 2.5}
           </div>
-          <button className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded m-8">
-            <Link to="/resume"> Continuar</Link>
-          </button>
+          
         </div>
       )}
       {showImages && (

@@ -1,11 +1,13 @@
 import { useImage } from "../context/ImageContext";
 import { MongoViewer } from "../components/MongoViewer"
+import Navbar from "../components/navbar";
 
 export const Order = () => {
     const {showImages, setShowImages} = useImage()
     return (
 
-        <div>
+        <div className="container mx-auto dark:text-white  dark:bg-slate-900">
+          <Navbar></Navbar>
             <div> Mi pedido: </div>
             <div className="flex justify-center">
           <button

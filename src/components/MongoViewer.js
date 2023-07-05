@@ -29,9 +29,6 @@ export const MongoViewer = () => {
             Tienes un total de {listFiles.length} imagenes, el cual tiene un
             costo de {listFiles.length * 2.5}
           </div>
-          <button className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded m-8">
-            <Link to="/resume"> Continuar</Link>
-          </button>
         </div>
       )}
       {showImages && (

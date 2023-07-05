@@ -1,7 +1,4 @@
-import React, { useEffect, useContext } from "react";
-import { useState } from "react";
-import { S3Viewer } from "../components/S3Viewer";
-import { MongoViewer } from "../components/MongoViewer";
+import React from "react";
 import { useImage } from "../context/ImageContext";
 import { Viewer } from "../components/Viewer";
 import { Link, useNavigate } from "react-router-dom";
@@ -13,13 +10,12 @@ export const Resume = () => {
   const {
     images,
     setImages,
-    showImages,
     setShowImages,
-    showMessage,
     setShowMessage,
     upLoadToMongo,
   } = useImage();
   setShowMessage(false);
+  setShowImages(true)
   const navigate = useNavigate();
 
   const onLoad = async () => {
@@ -28,7 +24,7 @@ export const Resume = () => {
       for (const imageDataURL of images) {
         await upLoadToMongo(imageDataURL);
       }
-      setImages([])
+      setImages([]);
       navigate("/");
     } catch (error) {
       console.log("Error al cargar a las imagenes", error);
@@ -36,33 +32,20 @@ export const Resume = () => {
   };
 
   return (
-    <div className=" dark:bg-slate-900">
+    <div className="container mx-auto dark:text-white  dark:bg-slate-900">
       <Navbar></Navbar>
       <div className="text-center mt-4  dark:text-white">
         {" "}
-        Gracias por su compra!
+        Revisa tu pedido!
       </div>
+      <Viewer></Viewer>
       <div className="flex justify-center">
         <button
           className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded m-8"
-          onClick={() => {
-            setShowImages(true);
-            setShowMessage(true);
-          }}
+          onDoubleClick={() => onLoad()}
         >
-          Mostrar resumen
+          Subir
         </button>
-      </div>
-      {/* <S3Viewer showImages={showImages} showMessage={showMessage}></S3Viewer> */}
-      <Viewer></Viewer>
-      {/* <MongoViewer></MongoViewer> */}
-      <button
-        className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded m-8"
-        onDoubleClick={() => onLoad()}
-      >
-        Subir
-      </button>
-      <div className="flex justify-center">
         <button className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded m-8">
           <Link to="/form"> Retroceder </Link>
         </button>

@@ -1,17 +1,11 @@
-import { useState, createContext } from "react";
 import Continue from "../components/Continue"
-import { MongoViewer} from "../components/MongoViewer"
 import Grid from "../components/Grid";
 import Navbar from "../components/navbar.js";
 import { useImage } from "../context/ImageContext";
 
 
-export const ImagesContext = createContext([]);
-
 function Upload() {
-  const {images, setImages,} = useImage()  //useState([]);
-  const {showImages, setShowImages} = useImage() //useState(false);
-
+  const {images, setImages,} = useImage()  
   const onChange = async (e) => {
     const files = Array.from(e.target.files);
 
@@ -37,7 +31,7 @@ function Upload() {
   };
 
   return (
-    <div className="container mx-auto px-4  dark:text-white  dark:bg-slate-900">
+    <div className="container mx-auto dark:text-white  dark:bg-slate-900">
       <Navbar></Navbar>
       <div className="relative h-60 w-75 border-4 border-gray-300 mt-16">
         <input
@@ -51,7 +45,6 @@ function Upload() {
         </div>
       </div>
 
-      <ImagesContext.Provider value={{ images, setImages }}>
         <Continue></Continue>
         <Grid></Grid>
         {/* <div className="flex justify-center">
@@ -63,7 +56,7 @@ function Upload() {
           </button>
         </div>
         <MongoViewer showImages={showImages}></MongoViewer> */}
-      </ImagesContext.Provider>
+
     </div>
   );
 }

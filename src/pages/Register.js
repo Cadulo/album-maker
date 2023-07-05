@@ -11,7 +11,7 @@ function Register() {
 
     useEffect(() => {
         if (isAuthenticated) navigate("/")
-    }, [isAuthenticated])
+    }, [isAuthenticated,navigate])
 
     const onSubmit = handleSubmit(async (values) => {
         
@@ -38,7 +38,7 @@ function Register() {
                     <input
                         type="text" id="username"
                         {...register("username", { required: true })}
-                        className="w-full p-2 border border-gray-300 rounded mb-2"
+                        className="w-full p-2 border border-gray-300 rounded mb-2  dark:text-black"
                     />
                     {errors.username && (
                         <p className="text-red-500"> username is required </p>
@@ -50,7 +50,7 @@ function Register() {
                     <input
                         type="email" id="email"
                         {...register("email", { required: true })}
-                        className="w-full p-2 border border-gray-300 rounded mb-2"
+                        className="w-full p-2 border border-gray-300 rounded mb-2  dark:text-black"
                     />
                     {errors.email && (
                         <p className="text-red-500"> email is required</p>
@@ -62,7 +62,7 @@ function Register() {
                     <input
                         type="password" id="password"
                         {...register("password", { required: true })}
-                        className="w-full p-2 border border-gray-300 rounded mb-2"
+                        className="w-full p-2 border border-gray-300 rounded mb-2  dark:text-black"
                     />
                     {errors.password && (
                         <p className="text-red-500 mb-2"> password is required</p>

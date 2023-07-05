@@ -20,7 +20,7 @@ function CardImage({ onDelete, index, id,indexMongo, imageDataURL, listFiles, se
   };
 
   return (
-    <div className="max-w-sm rounded overflow-hidden shadow-lg">
+    <div className="max-w-sm rounded overflow-hidden shadow-lg dark:bg-slate-800">
       <img src={imageDataURL} className="w-50 h-48 object-cover" alt="" />
       <div className="px-6 pt-4 pb-2">
         <button
