@@ -1,6 +1,5 @@
 import { createContext, useState, useContext, useEffect } from 'react'
 import { registerRequest, loginRequest, verifyTokenRequest } from '../api/auth.api'
-import { imageMongo,getImagesMongo,deleteImageMongo } from '../api/images.api'
 
 import Cookies from 'js-cookie'
 
@@ -9,7 +8,7 @@ export const AuthContext = createContext()
 export const useAuth = () => {
     const context = useContext(AuthContext)
     if (!context) {
-        throw new Error("useAuth must be used withn and AuthProvider")
+        throw new Error("useAuth must be used with an AuthProvider")
     }
     return context
 }
@@ -55,40 +54,6 @@ export const AuthProvider = ({ children }) => {
         setUser(null);
         setIsAuthenticated(false);
       };
-
-    const upLoadToMongo = async (imageDataUrl) =>{
-      
-        try {
-            const res = await imageMongo(imageDataUrl)
-            console.log(res.data)
-
-        } catch (error) {
-            console.log(error.response)
-        }
-    }
-
-    const downLoadFromMongo = async () => {
-        try {
-            const res = await getImagesMongo()
-            return res.data
-        }
-        catch(error) {
-            console.log(error.response)
-        }
-    }
-
-    const deleteFromMongo = async (id) => {
-        
-        try {
-            console.log(id)
-            const res = await deleteImageMongo(id);  
-            return res
-        } catch (error) {
-            console.log(error);
-          
-        }
-    }
-
 
     //Despues de 5 segundos se eliminan los errores para que deje de ense;ar en pantalla
     useEffect(() => {
@@ -144,9 +109,6 @@ export const AuthProvider = ({ children }) => {
             isAuthenticated,
             errors,
             isLoading,
-            upLoadToMongo,
-            downLoadFromMongo,
-            deleteFromMongo
         }}>
             {children}
         </AuthContext.Provider>

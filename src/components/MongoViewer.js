@@ -1,11 +1,10 @@
-import { useAuth } from "../context/AuthContext";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import CardImage from "./CardImage";
+import { useImage } from "../context/ImageContext";
 
-
-export const MongoViewer = ({ showImages,showMessage }) => {
-  const { downLoadFromMongo } = useAuth();
+export const MongoViewer = () => {
+  const { showImages,showMessage,  downLoadFromMongo } = useImage();
   const [listFiles, setListFiles] = useState([]);
 
   useEffect(() => {

@@ -1,7 +1,4 @@
 import AWS from 'aws-sdk';
-// import { useState,useContext } from 'react';
-// import { ImagesContext } from "../pages/Upload";
-// import Continue from "./Continue"
 
 AWS.config.update({
     accessKeyId: 'ASIATLQQJSZSA3DHNRWO',
@@ -12,9 +9,7 @@ AWS.config.update({
 
 export const S3Uploader = (images) => {
     const s3 = new AWS.S3();
-    // const {images} = useContext(ImagesContext);
-    // const [imageUrl, setImageUrl] = useState(null);
-
+  
     const uploadToS3 = async () => {
         await Promise.all(
             images.map(async (imageDataURL) => {

@@ -1,9 +1,11 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 // import { PageContext } from "../App";
 import { S3Viewer } from "../components/S3Viewer";
 import { Link } from "react-router-dom";
 import Navbar from '../components/navbar.js'
 import { MongoViewer } from "../components/MongoViewer";
+import { useImage } from "../context/ImageContext";
+import { Viewer } from "../components/Viewer";
 
 function Form() {
   // const { setPage } = useContext(PageContext);
@@ -14,8 +16,9 @@ function Form() {
     codigoPostal: "",
     repeatData: false,
   });
-  const [showMessage, setShowMessage] = useState(false)
-
+  const {setShowImages, showMessage, setShowMessage,upLoadToMongo} = useImage();
+  // const [showMessage, setShowMessage] = useState(false)
+  setShowImages(false)
   const handleChange = (e) => {
     const { name, value } = e.target;
     const fieldValue = value;
@@ -185,7 +188,6 @@ function Form() {
         </button>
         <button
           className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded m-8"
-          // onClick={() => setPage(1)}
         >
           <Link to="/"> Retroceder </Link>
         </button>
@@ -205,7 +207,8 @@ function Form() {
               Ciudad de envio: {formData.ciudadEnvio}
             </div>
           </div>
-          <MongoViewer showMessage={showMessage}></MongoViewer>
+          <Viewer></Viewer>
+          {/* <MongoViewer ></MongoViewer> */}
         </div>
 
       )

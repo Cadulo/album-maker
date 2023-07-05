@@ -3,13 +3,14 @@ import Continue from "../components/Continue"
 import { MongoViewer} from "../components/MongoViewer"
 import Grid from "../components/Grid";
 import Navbar from "../components/navbar.js";
+import { useImage } from "../context/ImageContext";
 
 
 export const ImagesContext = createContext([]);
 
 function Upload() {
-  const [images, setImages] = useState([]);
-  const [showImages, setShowImages] = useState(false);
+  const {images, setImages,} = useImage()  //useState([]);
+  const {showImages, setShowImages} = useImage() //useState(false);
 
   const onChange = async (e) => {
     const files = Array.from(e.target.files);
@@ -53,7 +54,7 @@ function Upload() {
       <ImagesContext.Provider value={{ images, setImages }}>
         <Continue></Continue>
         <Grid></Grid>
-        <div className="flex justify-center">
+        {/* <div className="flex justify-center">
           <button
             className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded m-8"
             onClick={() => setShowImages(true)}
@@ -61,7 +62,7 @@ function Upload() {
            Ver pedido anterior
           </button>
         </div>
-        <MongoViewer showImages={showImages}></MongoViewer>
+        <MongoViewer showImages={showImages}></MongoViewer> */}
       </ImagesContext.Provider>
     </div>
   );

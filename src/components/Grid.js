@@ -1,12 +1,13 @@
 import React, { useContext, useRef } from "react";
 import { ImagesContext } from "../pages/Upload";
 import CardImage from "./CardImage";
-
+import { useImage } from "../context/ImageContext";
 
 
 function Grid({ listFiles, formatUrl,deleteFromS3 }) {
-    const { images, setImages } = useContext(ImagesContext);
-
+    // const { images, setImages } = useContext(ImagesContext);
+    const {images, setImages} = useImage()
+    
     let dragItem = useRef();
     let dragOverItem = useRef();
     let dragOverItemIndex = useRef();
@@ -52,7 +53,7 @@ function Grid({ listFiles, formatUrl,deleteFromS3 }) {
                         onDragEnd={drop}
                         draggable
                     >
-                        <CardImage imageDataURL={imageDataURL} onDelete={deleteImage} index={index}>Delete</CardImage>
+                        <CardImage imageDataURL={imageDataURL} onDelete={deleteImage} index={index}></CardImage>
                     </div>
                 ))}
             </div>

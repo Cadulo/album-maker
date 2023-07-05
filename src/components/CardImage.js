@@ -1,9 +1,8 @@
 
-import { useAuth } from "../context/AuthContext";
-
+import { useImage } from "../context/ImageContext";
 
 function CardImage({ onDelete, index, id,indexMongo, imageDataURL, listFiles, setListFiles }) {
-  const { deleteFromMongo } = useAuth();
+  const { deleteFromMongo } = useImage();
 
   const handleDelete = () => {
     try {
