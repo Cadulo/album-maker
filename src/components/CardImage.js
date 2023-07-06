@@ -1,7 +1,7 @@
 
 import { useImage } from "../context/ImageContext";
 
-function CardImage({ onDelete, index, id,indexMongo, imageDataURL, listFiles, setListFiles }) {
+function CardImage({ onDelete, index, id,indexMongo, imageDataURL, listFiles, setListFiles,ShowButton }) {
   const { deleteFromMongo } = useImage();
 
   const handleDelete = () => {
@@ -23,12 +23,12 @@ function CardImage({ onDelete, index, id,indexMongo, imageDataURL, listFiles, se
     <div className="max-w-sm rounded overflow-hidden shadow-lg dark:bg-slate-800">
       <img src={imageDataURL} className="w-50 h-48 object-cover" alt="" />
       <div className="px-6 pt-4 pb-2">
-        <button
+        {ShowButton &&(<button
           className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-          onClick={() => handleDelete()}
+          onClick={() => handleDelete()} 
         >
           Delete
-        </button>
+        </button> )}
       </div>
     </div>
   );

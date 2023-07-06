@@ -1,12 +1,12 @@
-import { useImage } from "../context/ImageContext";
+
 import { MongoViewer } from "../components/MongoViewer"
 import Navbar from "../components/navbar";
 import { useState } from "react";
 
 export const Order = () => {
-    const { setShowImages} = useImage()
+    
     const [isLoading] = useState(false);
-
+    const [showImages, setShowImages] = useState(false)
     return (
 
         <div className="container mx-auto dark:text-white  dark:bg-slate-900">
@@ -26,7 +26,7 @@ export const Order = () => {
                         <div className="text-center text-2xl font-bold my-8">Cargando...</div>
                     </div>
                 ) : (
-        <MongoViewer  ></MongoViewer>)}
+        <MongoViewer  showImages={showImages}></MongoViewer>)}
         </div>
     )
 }

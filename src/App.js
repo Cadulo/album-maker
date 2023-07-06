@@ -6,14 +6,26 @@ import Register from "./pages/Register.js";
 import Login from "./pages/Login.js";
 import { AuthProvider } from "./context/AuthContext.js";
 import { ImageProvider } from "./context/ImageContext.js";
-import "./App.css";
-
-import { Route, Routes } from "react-router-dom";
-
+import { useEffect } from "react";
+import { Route, Routes,useNavigate } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute.js";
 import PanelOrders from "./pages/PanelOrders.js";
 
 function App() {
+    const navigate = useNavigate();
+    useEffect(() => {
+        const handleBeforeUnload = (event) => {
+        event.preventDefault()
+        event.returnValue = '' //En chrome permite activar ventana emergente
+        return event.returnValue
+        };
+        
+        window.addEventListener("beforeunload", handleBeforeUnload);
+
+        return () => {
+          window.removeEventListener("beforeunload", handleBeforeUnload);
+        };
+      }, [navigate]);
     return (
         <AuthProvider>
             <ImageProvider>

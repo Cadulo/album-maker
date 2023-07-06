@@ -1,17 +1,10 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/navbar.js";
-
+import { useImage } from "../context/ImageContext";
 function Form() {
-  
-  const [formData, setFormData] = useState({
-    nombre: "",
-    direccion: "",
-    ciudad: "",
-    codigoPostal: "",
-    repeatData: false,
-  });
-  const [showMessage, setShowMessage] = useState(false)
+  const navigate = useNavigate();
+
+  const { formData, setFormData, images } = useImage();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -50,7 +43,24 @@ function Form() {
   };
 
   const message = () => {
-    setShowMessage(true);
+    if (
+      formData.nombre.trim() !== "" &&
+      formData.direccion.trim() !== "" &&
+      formData.ciudad.trim() !== "" &&
+      formData.codigoPostal.trim() !== "" &&
+      formData.direccionEnvio !== "" &&
+      formData.codigoPostalEnvio !== "" &&
+      formData.ciudadEnvio !== ""
+    ) {
+      if (images.length !== 0) {
+        navigate("/resume");
+      } else {
+        alert("No tienes imagenes agregadas");
+        navigate("/");
+      }
+    } else {
+      alert("Llena todos los campos!");
+    }
   };
 
   return (
@@ -181,32 +191,20 @@ function Form() {
               className="w-full p-2 border border-gray-300 rounded  dark:text-black"
             />
           </div>
-        </div>
+        </div>{" "}
         <button
           type="submit"
           onClick={() => message()}
           className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
         >
-          Resumen del pedido
-        </button>
-        <button className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded m-8">
-          <Link to="/"> Retroceder </Link>
-        </button>
+          <a href="#resume">Resumen del pedido </a>
+        </button>{" "}
+        <Link to="/">
+          <button className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded m-8">
+            Retroceder
+          </button>
+        </Link>
       </form>
-      {showMessage && (
-        <div className=" dark:text-white">
-          <div className="text-center">
-            <div>Pedido a nombre de: {formData.nombre}</div>
-            <div>Direccion de envio: {formData.direccionEnvio}</div>
-            <div>Ciudad de envio: {formData.ciudadEnvio}</div>
-          </div>
-          <div className="flex justify-center">
-            <button className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded m-8">
-              <Link to="/resume"> Continuar</Link>
-            </button>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

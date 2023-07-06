@@ -53,7 +53,7 @@ function Grid({ listFiles, formatUrl,deleteFromS3 }) {
                         onDragEnd={drop}
                         draggable
                     >
-                        <CardImage imageDataURL={imageDataURL} onDelete={deleteImage} index={index}></CardImage>
+                        <CardImage imageDataURL={imageDataURL} onDelete={deleteImage} index={index} ShowButton={true}></CardImage>
                     </div>
                 ))}
             </div>

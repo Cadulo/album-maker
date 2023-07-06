@@ -10,17 +10,25 @@ export const Resume = () => {
     images,
     setImages,
     upLoadToMongo,
+    setFormData
   } = useImage();
   
   const navigate = useNavigate();
 
   const onLoad = async () => {
-    try {
-      setIsLoading(true)
+    setIsLoading(true)
+    try{
       for (const imageDataURL of images) {
-        await upLoadToMongo(imageDataURL);
+          await upLoadToMongo(imageDataURL);
       }
       setImages([]);
+      setFormData({
+        nombre: "",
+        direccion: "",
+        ciudad: "",
+        codigoPostal: "",
+        repeatData: false,
+      })
       alert("Pedido procesado con exito!")
       navigate("/");
     } catch (error) {
