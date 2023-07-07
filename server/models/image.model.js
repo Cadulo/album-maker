@@ -2,11 +2,10 @@ const Image = require("../schemas/image.schema");
 
 async function saveImage(req, res) {
   try {
-    const { imageDataURL } = req.body;
+    const { imageDataURL, order } = req.body;
 
-    const image = new Image({ imageData: imageDataURL, user: req.user.id });
+    const image = new Image({ imageData: imageDataURL, user: req.user.id, order: order });
     const savedImage = await image.save();
-
     res.json({ image: savedImage });
   } catch (error) {
     console.error("Error al guardar la imagen:", error);

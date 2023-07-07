@@ -28,9 +28,9 @@ export const ImageProvider = ({ children }) => {
     repeatData: false,
   });
 
-  const upLoadToMongo = async (imageDataUrl) => {
+  const upLoadToMongo = async (imageDataUrl, order) => {
     try {
-      const res = await imageMongo(imageDataUrl);
+      const res = await imageMongo(imageDataUrl, order);
       console.log(res.data);
     } catch (error) {
       console.log(error.response);

@@ -6,7 +6,6 @@ const billSchema = new mongoose.Schema(
     nombre: {
       type: String,
       required: true,
-      trim: true, //Elimina espacios
     },
     direccion: {
       type: String,

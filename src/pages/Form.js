@@ -9,8 +9,6 @@ function Form() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     const fieldValue = value;
-    console.log(e.target);
-    console.log(formData);
     setFormData((prevData) => ({
       ...prevData,
       [name]: fieldValue,
@@ -39,7 +37,6 @@ function Form() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
   };
 
   const message = () => {

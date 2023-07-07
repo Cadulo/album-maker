@@ -6,43 +6,36 @@ async function saveOrder(req, res) {
   try {
     const order = new Order({ user: req.user.id });
     const savedOrder = await order.save();
-    res.json({ order: savedOrder });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-}
 
-async function saveBill(req, res) {
-  try {
     const { nombre, ciudad, direccion, codigoPostal } = req.body;
-    newBill = new Bill({
+    const newBill = new Bill({
       nombre,
       ciudad,
       direccion,
       codigoPostal,
+      user: req.user.id,
     });
+    const savedBill = await newBill.save();
 
-    savedBill = await newBill.save();
-    res.json({ bill: savedBill });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-}
-
-async function saveShipping(req, res) {
-  try {
     const { ciudadEnvio, direccionEnvio, codigoPostalEnvio } = req.body;
-    newShipping = new Shipping({
-      ciudadEnvio, direccionEnvio, codigoPostalEnvio
+    const newShipping = new Shipping({
+      ciudadEnvio,
+      direccionEnvio,
+      codigoPostalEnvio,
+      user: req.user.id,
     });
+    const savedShipping = await newShipping.save();
 
-    savedShipping = await newShipping.save();
-    res.json({ shipping: savedShipping });
+    savedOrder.bill = savedBill._id;
+    savedOrder.shipping = savedShipping._id;
+    await savedOrder.save();
+
+    res.json({ order: savedOrder._id });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 }
+
+
 
 exports.saveOrder = saveOrder;
-exports.saveBill = saveBill;
-exports.saveShipping = saveShipping;

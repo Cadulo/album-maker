@@ -2,13 +2,17 @@ const mongoose = require("mongoose");
 
 const imageSchema = new mongoose.Schema(
   {
-    imageData: {
-      type: String,
-      required: true,
-    },
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
+    },
+    order: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Order",
+    },
+    imageData: {
+      type: String,
+      required: true,
     },
   },
   {

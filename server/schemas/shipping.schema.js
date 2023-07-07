@@ -2,15 +2,15 @@ const mongoose = require("mongoose");
 
 const shippingSchema = new mongoose.Schema(
   {
-    direccion: {
+    direccionEnvio: {
       type: String,
       required: true,
     },
-    ciudad: {
+    ciudadEnvio: {
       type: String,
       required: true,
     },
-    codigoPostal: {
+    codigoPostalEnvio: {
       type: String,
       required: true,
     },

@@ -6,13 +6,19 @@ const orderSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
+    bill: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Bill",
+    },
+    shipping: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Shipping",
+    },
   },
   {
     timestamps: true,
   }
 );
-
-
 
 const Order = new mongoose.model("Order", orderSchema);
 
