@@ -1,4 +1,3 @@
-const { Athena } = require("aws-sdk");
 const Image = require("../schemas/image.schema");
 
 async function saveImage(req, res) {
