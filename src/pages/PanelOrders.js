@@ -3,9 +3,11 @@ import { useEffect, useState } from "react";
 import Navbar from "../components/navbar";
 import { useOrder } from "../context/OrderContext";
 import { Order } from "../components/Order";
+import { useAuth } from "../context/AuthContext";
 
 export const PanelOrders = () => {
-  const { getOrder, getBill, getShipping } = useOrder();
+  const { user } = useAuth();
+  const { getOrderAdmin, getBill, getShipping } = useOrder();
   const [showImages, setShowImages] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [listFiles, setListFiles] = useState([]);
@@ -13,7 +15,8 @@ export const PanelOrders = () => {
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        const res = await getOrder();
+        const res = await getOrderAdmin();
+        console.log(res)
         setListFiles(res);
         setIsLoading(false);
       } catch (error) {
@@ -22,38 +25,48 @@ export const PanelOrders = () => {
     };
     fetchData();
   }, []);
-
-  return (
-    <div className="container mx-auto dark:text-white  dark:bg-slate-900">
-      <Navbar></Navbar>
-      {listFiles.length !== 0 ? (
-        <div className="text-center text-2xl font-bold my-8">Mis órdenes:</div>
-      ) : (
-        <div className="text-center text-2xl font-bold my-8">Aún no tienes órdenes</div>
-      )}
-      {isLoading ? (
-        <div>
-          <div className="text-center text-2xl font-bold my-8">Cargando...</div>
-        </div>
-      ) : (
-        listFiles &&
-        listFiles.length > 0 && (
-          <div className="flex flex-column justify-center mt-4 mx-4">
-            <div className="">
-              {listFiles.map((file, index) => {
-                return (
-                  <Order
-                    billId={file.bill}
-                    shippingId={file.shipping}
-                    orderId={file._id}
-                    key={index}
-                  ></Order>
-                );
-              })}
+  if (user.isAdmin || user.username == "admin") {
+    return (
+      <div className="container mx-auto dark:text-white  dark:bg-slate-900">
+        <Navbar></Navbar>
+        {listFiles &&
+          (listFiles.length !== 0 ? (
+            <div className="text-center text-2xl font-bold my-8">
+              Mis órdenes:
+            </div>
+          ) : (
+            <div className="text-center text-2xl font-bold my-8">
+              No hay nada que administrar aún
+            </div>
+          ))}
+        {isLoading ? (
+          <div>
+            <div className="text-center text-2xl font-bold my-8">
+              Cargando...
             </div>
           </div>
-        )
-      )}
-    </div>
-  );
+        ) : (
+          listFiles &&
+          listFiles.length > 0 && (
+            <div className="flex flex-column justify-center mt-4 mx-4">
+              <div className="">
+                {listFiles.map((file, index) => {
+                  return (
+                    <Order
+                      billId={file.bill}
+                      shippingId={file.shipping}
+                      orderId={file._id}
+                      key={index}
+                    ></Order>
+                  );
+                })}
+              </div>
+            </div>
+          )
+        )}
+      </div>
+    );
+  } else {
+    return <div>No estas autorizado para entrar a este sitio</div>;
+  }
 };

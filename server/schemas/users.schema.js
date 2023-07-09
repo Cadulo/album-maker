@@ -14,9 +14,10 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
-    },  isAdmin: {
+    },  
+    isAdmin: {
         type: Boolean,
-        default: false // Por defecto, el usuario no es administrador
+       
     }
 }, {
     timestamps:true //add date of creation

@@ -12,6 +12,7 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute.js";
 import { PanelOrders } from "./pages/PanelOrders.js";
 
+
 function App() {
   const navigate = useNavigate();
   useEffect(() => {
@@ -40,7 +41,7 @@ function App() {
                 <Route path="/form" element={<Form />}></Route>
                 <Route path="/resume" element={<Resume />}></Route>
                 <Route path="/client-orders" element={<OrderList />}></Route>
-                <Route path="/admin-orders" element={<PanelOrders />}></Route>
+                <Route path="/admin-orders" element={<PanelOrders />} />
               </Route>
             </Routes>
           </div>

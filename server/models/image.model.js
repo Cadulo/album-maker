@@ -13,15 +13,6 @@ async function saveImage(req, res) {
   }
 }
 
-// async function getImages(req, res) {
-//   try {
-//     const images = await Image.find({ user: req.user.id }).populate("user");
-//     res.json(images);
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// }
-
 async function getImages(req, res) {
   try {
     const { orderId } = req.query;

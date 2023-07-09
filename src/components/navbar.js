@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
     const { user, logout, isAuthenticated } = useAuth();
+  
     return (
         <nav className="">
             <div className="container mx-auto px-4">
@@ -18,12 +19,19 @@ const Navbar = () => {
                                 <h2 className="text-xl font-bold  dark:text-white">
                                     Bienvenido {user.username}!
                                 </h2>
-                                <Link
+                              
+                                {user.isAdmin || user.username =="admin" ?(
+                                    <Link
+                                    to={"/admin-orders"}
+                                    className="text-xl font-bold  dark:text-white hover:underline">
+                                    Administrar
+                                    </Link>
+                                ):(  <Link
                                     to={"/client-orders"}
                                     className="text-xl font-bold  dark:text-white hover:underline">
                                   
                                     Mis ordenes
-                                </Link>
+                                </Link>)}
 
                                 <Link
                                     to={"/"}

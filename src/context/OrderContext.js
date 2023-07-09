@@ -1,4 +1,4 @@
-import { orderMongo, getOrderMongo, getBillMongo,getShippingMongo } from "../api/order.api";
+import { orderMongo, getOrderMongo, getBillMongo,getShippingMongo, getOrderAdminMongo } from "../api/order.api";
 import { createContext, useContext } from "react";
 
 export const OrderContext = createContext();
@@ -50,10 +50,21 @@ export const OrderProvider = ({ children }) => {
       console.log(error.response);
     }
   };
+
+  const getOrderAdmin = async () => {
+    try {
+      const res = await getOrderAdminMongo()
+      return res.data
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
+
+
   return (
     <OrderContext.Provider
       value={{
-        uploadOrder, getOrder, getBill, getShipping
+        uploadOrder, getOrder, getBill, getShipping, getOrderAdmin
       }}
     >
       {children}

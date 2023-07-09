@@ -45,6 +45,7 @@ async function getOrders(req, res) {
   }
 }
 
+
 async function getBill(req, res) {
   try {
     const bill = await Bill.findById(req.params.id);

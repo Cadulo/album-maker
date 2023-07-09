@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken")
 const { createAccessToken } = require("../middlewares/jwt.js")
 
 async function register(req, res) {
-    const { username, email, password } = req.body
+    const { username, email, password, isAdmin } = req.body
     try {
         const userFound = await User.findOne({ email });
         if (userFound) return res.status(400).json(["The email alredy exists"])
@@ -14,6 +14,7 @@ async function register(req, res) {
             username,
             email,
             password: passwordHash,
+            isAdmin:isAdmin || false
         }) //Crea el usuario
         const userSaved = await newUser.save() //Guarda el usuario en la db
         const token = await createAccessToken({ id: userSaved._id })
@@ -25,7 +26,8 @@ async function register(req, res) {
                 username: userSaved.username,
                 email: userSaved.email,
                 createdAt: userSaved.createdAt,
-                updatedAt: userSaved.updatedAt
+                updatedAt: userSaved.updatedAt,
+                isAdmin: userSaved.isAdmin
             }
         )
     }
@@ -53,7 +55,8 @@ async function login(req, res) {
                 email: userFound.email,
                 password: userFound.password,
                 createdAt: userFound.createdAt,
-                updatedAt: userFound.updatedAt
+                updatedAt: userFound.updatedAt,
+                isAdmin: userFound.isAdmin
             } //no es necesario enviar al front el password, pero lo envio para que se vea la encriptacion
         )
     }

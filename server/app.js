@@ -11,6 +11,7 @@ const cors = require('cors') // Permite comunicacion entre dominios
 const authController = require('./controllers/auth.controller')
 const imageController = require('./controllers/images.controller')
 const orderController = require('./controllers/order.controller')
+const adminController = require('./controllers/admin.controller')
 
 const app = express();
 app.use(morgan('dev')); //Muestra mensaje corto por consola
@@ -30,5 +31,6 @@ app.use((req, res, next) => {
 app.use('/api', authController);
 app.use('/api', imageController);
 app.use('/api', orderController);
+app.use('/api', adminController);
 
 module.exports=app;
