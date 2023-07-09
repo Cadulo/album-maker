@@ -14,20 +14,20 @@ import { PanelOrders } from "./pages/PanelOrders.js";
 
 
 function App() {
-  const navigate = useNavigate();
-  useEffect(() => {
-    const handleBeforeUnload = (event) => {
-      event.preventDefault();
-      event.returnValue = ""; //En chrome permite activar ventana emergente
-      return event.returnValue;
-    };
+  // const navigate = useNavigate();
+  // useEffect(() => {
+  //   const handleBeforeUnload = (event) => {
+  //     event.preventDefault();
+  //     event.returnValue = ""; //En chrome permite activar ventana emergente
+  //     return event.returnValue;
+  //   };
 
-    window.addEventListener("beforeunload", handleBeforeUnload);
+  //   window.addEventListener("beforeunload", handleBeforeUnload);
 
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-    };
-  }, [navigate]);
+  //   return () => {
+  //     window.removeEventListener("beforeunload", handleBeforeUnload);
+  //   };
+  // }, [navigate]);
   return (
     <AuthProvider>
       <ImageProvider>
