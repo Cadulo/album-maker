@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useImage } from "../context/ImageContext";
-import { Viewer } from "../components/Viewer";
+import { Viewer } from "../components/Viewers/Viewer";
 import { Link, useNavigate } from "react-router-dom";
 import { useOrder } from "../context/OrderContext";
 import Navbar from "../components/navbar.js";

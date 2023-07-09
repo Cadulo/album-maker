@@ -1,5 +1,5 @@
-import CardImage from "./CardImage";
-import { useImage } from "../context/ImageContext";
+import CardImage from "../CardImage";
+import { useImage } from "../../context/ImageContext";
 
 export const Viewer = () => {
   const { images, setImages,formData } = useImage();

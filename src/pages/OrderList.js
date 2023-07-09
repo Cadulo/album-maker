@@ -1,4 +1,4 @@
-import { MongoViewer } from "../components/MongoViewer";
+import { MongoViewer } from "../components/Viewers/MongoViewer";
 import { useEffect, useState } from "react";
 import Navbar from "../components/navbar";
 import { useOrder } from "../context/OrderContext";

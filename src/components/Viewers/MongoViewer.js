@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import CardImage from "./CardImage";
-import { useImage } from "../context/ImageContext";
+import CardImage from "../CardImage";
+import { useImage } from "../../context/ImageContext";
 
 export const MongoViewer = ({ showImages,orderId }) => {
   const { downLoadFromMongo } = useImage();

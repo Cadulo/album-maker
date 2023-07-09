@@ -1,6 +1,6 @@
 import { useOrder } from "../context/OrderContext";
 import { useEffect, useState } from "react";
-import { MongoViewer } from "../components/MongoViewer";
+import { MongoViewer } from "./Viewers/MongoViewer";
 
 export const Order = ({ orderId, billId, shippingId }) => {
   const [showImages, setShowImages] = useState(false);
