@@ -2,7 +2,7 @@ import { useOrder } from "../context/OrderContext";
 import { useEffect, useState } from "react";
 import { MongoViewer } from "./Viewers/MongoViewer";
 
-export const Order = ({ orderId, billId, shippingId }) => {
+export const Order = ({ orderId, billId, shippingId,showBotton }) => {
   const [showImages, setShowImages] = useState(false);
   const { getBill, getShipping } = useOrder();
   const [bill, setBill] = useState();
@@ -82,7 +82,7 @@ export const Order = ({ orderId, billId, shippingId }) => {
         </>
       )}
 
-      <div className="flex justify-center">
+      {showBotton&&(<div className="flex justify-center">
         <button
           className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded m-8"
           onClick={() => {
@@ -91,7 +91,7 @@ export const Order = ({ orderId, billId, shippingId }) => {
         >
           {showImages ? 'Ocultar Imágenes' : 'Mostrar Imágenes'}
         </button>
-      </div>
+      </div>)}
       <MongoViewer showImages={showImages} orderId={orderId}></MongoViewer>
     </div> 
     )}

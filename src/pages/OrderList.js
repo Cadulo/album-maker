@@ -4,11 +4,13 @@ import Navbar from "../components/navbar";
 import { useOrder } from "../context/OrderContext";
 import { Order } from "../components/Order";
 
+
 export const OrderList = () => {
   const { getOrder } = useOrder();
-  
   const [isLoading, setIsLoading] = useState(false);
   const [listFiles, setListFiles] = useState([]);
+  const [showBotton, setShowBotton] = useState(false)
+  setShowBotton(true)
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -41,22 +43,22 @@ export const OrderList = () => {
       ) : (
         listFiles &&
         listFiles.length > 0 && (
-          <div className="flex flex-column justify-center mt-4 mx-4">
+          <div className="flex flex-column justify-center mt-4 mx-4 ">
             <div className="">
               {listFiles.map((file, index) => {
                 return (
-                  <div key={index}>
-                    <table className="min-w-full bg-white border border-gray-300 mb-4 dark:text-dark">
+                  <div key={index} className=" text-black">
+                    <table className="min-w-full bg-white border border-gray-300 mb-4 ">
                       <thead>
                         <tr>
                           <th className="py-2 px-4 border-b ">Estado</th>
-                          <th className="py-2 px-4 border-b">Courier</th>              
+                          <th className="py-2 px-4 border-b ">Courier</th>              
                         </tr>
                       </thead>
                       <tbody className="text-center">
                         <tr>
-                          <td className="py-2 px-4 border-b">{file.status}</td>
-                          <td className="py-2 px-4 border-b">{file.courier}</td>
+                          <td className="py-2 px-4 border-b ">{file.status}</td>
+                          <td className="py-2 px-4 border-b ">{file.courier}</td>
                         </tr>
                       </tbody>
                     </table>
@@ -65,6 +67,7 @@ export const OrderList = () => {
                       shippingId={file.shipping}
                       orderId={file._id}
                       key={index}
+                      showBotton={showBotton}
                     ></Order>
                   </div>
                 );

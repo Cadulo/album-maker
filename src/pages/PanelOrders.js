@@ -9,6 +9,7 @@ export const PanelOrders = () => {
   const { getOrderAdmin} = useOrder();
   const [isLoading, setIsLoading] = useState(false);
   const [listFiles, setListFiles] = useState([]);
+  const [showBotton, setShowBotton] = useState(false)
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -30,7 +31,7 @@ export const PanelOrders = () => {
         {listFiles &&
           (listFiles.length !== 0 ? (
             <div className="text-center text-2xl font-bold my-8">
-              Mis órdenes:
+              Administra:
             </div>
           ) : (
             <div className="text-center text-2xl font-bold my-8">
@@ -50,7 +51,7 @@ export const PanelOrders = () => {
               <div className="">
                 {listFiles.map((file, index) => {
                   return (
-                    <div key={index}>
+                    <div key={index} className="text-black">
                     <table className="min-w-full bg-white border border-gray-300 mb-4 dark:text-dark">
                       <thead>
                         <tr>
@@ -70,6 +71,7 @@ export const PanelOrders = () => {
                       shippingId={file.shipping}
                       orderId={file._id}
                       key={index}
+                      showBotton={showBotton}
                     ></Order>
                     </div>
                   );
