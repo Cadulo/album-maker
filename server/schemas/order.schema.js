@@ -13,7 +13,13 @@ const orderSchema = new mongoose.Schema(
     shipping: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Shipping",
+
+    },status:{
+      type: String,
     },
+    courier:{
+      type: String,
+    }
   },
   {
     timestamps: true,

@@ -4,7 +4,11 @@ const Shipping = require("../schemas/shipping.schema");
 
 async function saveOrder(req, res) {
   try {
-    const order = new Order({ user: req.user.id });
+    const {status,courier} = req.body
+    const order = new Order({ user: req.user.id,
+    status: status || "Procesando",
+    courier: courier || "Sin asignar"
+    });
     const savedOrder = await order.save();
 
     const { nombre, ciudad, direccion, codigoPostal } = req.body;

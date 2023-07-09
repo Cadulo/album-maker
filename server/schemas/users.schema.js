@@ -17,7 +17,6 @@ const userSchema = new mongoose.Schema({
     },  
     isAdmin: {
         type: Boolean,
-       
     }
 }, {
     timestamps:true //add date of creation
