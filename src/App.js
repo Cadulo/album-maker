@@ -10,7 +10,7 @@ import { OrderProvider } from "./context/OrderContext.js";
 import { useEffect } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute.js";
-import PanelOrders from "./pages/PanelOrders.js";
+import { PanelOrders } from "./pages/PanelOrders.js";
 
 function App() {
   const navigate = useNavigate();
@@ -35,17 +35,12 @@ function App() {
             <Routes>
               <Route path="/register" element={<Register />}></Route>
               <Route path="/login" element={<Login />}></Route>
-              {/* ===========> El panel de administración */}
-              {/* <Route
-                        path="/orders"
-                        // element={<PanelOrders orders={orders} />}></Route> */}
               <Route element={<ProtectedRoute />}>
                 <Route path="/" element={<Upload />}></Route>
                 <Route path="/form" element={<Form />}></Route>
                 <Route path="/resume" element={<Resume />}></Route>
-                <Route path="/order" element={<OrderList />}>
-                  {" "}
-                </Route>
+                <Route path="/client-orders" element={<OrderList />}></Route>
+                <Route path="/admin-orders" element={<PanelOrders />}></Route>
               </Route>
             </Routes>
           </div>

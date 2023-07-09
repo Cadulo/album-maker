@@ -19,7 +19,7 @@ const Navbar = () => {
                                     Bienvenido {user.username}!
                                 </h2>
                                 <Link
-                                    to={"/order"}
+                                    to={"/client-orders"}
                                     className="text-xl font-bold  dark:text-white hover:underline">
                                   
                                     Mis ordenes
