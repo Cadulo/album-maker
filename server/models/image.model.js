@@ -13,9 +13,25 @@ async function saveImage(req, res) {
   }
 }
 
+// async function getImages(req, res) {
+//   try {
+//     const images = await Image.find({ user: req.user.id }).populate("user");
+//     res.json(images);
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// }
+
 async function getImages(req, res) {
   try {
-    const images = await Image.find({ user: req.user.id }).populate("user");
+    const { orderId } = req.query;
+    const query = { user: req.user.id };
+    
+    if (orderId) {
+      query.order = orderId;
+    }
+
+    const images = await Image.find(query).populate("user");
     res.json(images);
   } catch (error) {
     res.status(500).json({ message: error.message });

@@ -33,7 +33,9 @@ export const OrderProvider = ({ children }) => {
 
   const getBill = async (id) => {
     try {
+     
       const res = await getBillMongo(id)
+   
       return res.data
     } catch (error) {
       console.log(error.response);

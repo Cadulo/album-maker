@@ -1,7 +1,7 @@
 
 import { useImage } from "../context/ImageContext";
 
-function CardImage({ onDelete, index, id,indexMongo, imageDataURL, listFiles, setListFiles,ShowButton }) {
+function CardImage({ onDelete, index, id,indexMongo, imageDataURL, listFiles, setListFiles, ShowButton }) {
   const { deleteFromMongo } = useImage();
 
   const handleDelete = () => {

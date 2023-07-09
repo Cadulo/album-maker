@@ -34,6 +34,7 @@ export const Viewer = () => {
                 imageDataURL={imageDataURL}
                 index={index}
                 onDelete={deleteImage}
+                ShowButton={false}
               ></CardImage>
             </div>
           ))}

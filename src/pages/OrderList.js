@@ -26,7 +26,11 @@ export const OrderList = () => {
   return (
     <div className="container mx-auto dark:text-white  dark:bg-slate-900">
       <Navbar></Navbar>
-      <div> Mis ordenes: </div>
+      {listFiles.length !== 0 ? (
+        <div className="text-center text-2xl font-bold my-8">Mis órdenes:</div>
+      ) : (
+        <div className="text-center text-2xl font-bold my-8">Aún no tienes órdenes</div>
+      )}
       {isLoading ? (
         <div>
           <div className="text-center text-2xl font-bold my-8">Cargando...</div>
@@ -37,24 +41,19 @@ export const OrderList = () => {
           <div className="flex flex-column justify-center mt-4 mx-4">
             <div className="">
               {listFiles.map((file, index) => {
-                return <Order billId={file.bill} shippingId={file.shipping} key={index}></Order>;
+                return (
+                  <Order
+                    billId={file.bill}
+                    shippingId={file.shipping}
+                    orderId={file._id}
+                    key={index}
+                  ></Order>
+                );
               })}
             </div>
           </div>
         )
       )}
-      {/* <div className="flex justify-center">
-        <button
-          className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded m-8"
-          onClick={() => {
-            setShowImages(true);
-          }}
-        >
-          Ver ordenes
-        </button>
-      </div>
-
-      <MongoViewer showImages={showImages}></MongoViewer> */}
     </div>
   );
 };

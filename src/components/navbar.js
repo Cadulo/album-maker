@@ -22,7 +22,7 @@ const Navbar = () => {
                                     to={"/order"}
                                     className="text-xl font-bold  dark:text-white hover:underline">
                                   
-                                    Mi orden
+                                    Mis ordenes
                                 </Link>
 
                                 <Link

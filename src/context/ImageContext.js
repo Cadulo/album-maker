@@ -37,9 +37,9 @@ export const ImageProvider = ({ children }) => {
     }
   };
 
-  const downLoadFromMongo = async () => {
+  const downLoadFromMongo = async (orderId) => {
     try {
-      const res = await getImagesMongo();
+      const res = await getImagesMongo(orderId);
       return res.data;
     } catch (error) {
       console.log(error.response);

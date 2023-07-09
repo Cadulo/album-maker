@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import CardImage from "./CardImage";
 import { useImage } from "../context/ImageContext";
 
-export const MongoViewer = ({ showImages }) => {
+export const MongoViewer = ({ showImages,orderId }) => {
   const { downLoadFromMongo } = useImage();
 
   const [listFiles, setListFiles] = useState([]);
@@ -10,8 +10,9 @@ export const MongoViewer = ({ showImages }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        console.log(orderId)
         setIsLoading(true);
-        const res = await downLoadFromMongo();
+        const res = await downLoadFromMongo(orderId);
         console.log(res);
         setListFiles(res);
         setIsLoading(false);
@@ -49,7 +50,7 @@ export const MongoViewer = ({ showImages }) => {
                       indexMongo={index}
                       listFiles={listFiles}
                       setListFiles={setListFiles}
-                      ShowButton={true}
+                      ShowButton={false}
                     ></CardImage>
                   ))}
                 </div>

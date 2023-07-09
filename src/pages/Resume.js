@@ -17,7 +17,7 @@ export const Resume = () => {
   const onLoad = async () => {
     setIsLoading(true);
     try {
-      const {order} = await uploadOrder(formData)
+      const { order } = await uploadOrder(formData);
       for (const imageDataURL of images) {
         await upLoadToMongo(imageDataURL, order);
       }
