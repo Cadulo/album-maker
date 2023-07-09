@@ -1,7 +1,7 @@
 import Upload from "./pages/Upload.js";
 import Form from "./pages/Form.js";
 import { Resume } from "./pages/Resume.js";
-import { Order } from "./pages/Order.js";
+import { OrderList } from "./pages/OrderList.js";
 import Register from "./pages/Register.js";
 import Login from "./pages/Login.js";
 import { AuthProvider } from "./context/AuthContext.js";
@@ -43,7 +43,7 @@ function App() {
                 <Route path="/" element={<Upload />}></Route>
                 <Route path="/form" element={<Form />}></Route>
                 <Route path="/resume" element={<Resume />}></Route>
-                <Route path="/order" element={<Order />}>
+                <Route path="/order" element={<OrderList />}>
                   {" "}
                 </Route>
               </Route>

@@ -36,6 +36,35 @@ async function saveOrder(req, res) {
   }
 }
 
+async function getOrders(req, res) {
+  try {
+    const order = await Order.find({ user: req.user.id }).populate("user");
+    res.json(order);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}
+
+async function getBill(req, res) {
+  try {
+    const bill = await Bill.findById(req.params.id);
+    res.json(bill);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}
+
+async function getShipping(req, res) {
+  try {
+    const ship = await Shipping.findById(req.params.id)
+    res.json(ship);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}
 
 
 exports.saveOrder = saveOrder;
+exports.getOrders = getOrders;
+exports.getBill = getBill;
+exports.getShipping = getShipping;

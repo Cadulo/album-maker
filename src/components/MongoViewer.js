@@ -4,7 +4,7 @@ import { useImage } from "../context/ImageContext";
 
 export const MongoViewer = ({ showImages }) => {
   const { downLoadFromMongo } = useImage();
-  // const [showImages,setShowImages] = useState(false)
+
   const [listFiles, setListFiles] = useState([]);
   const [isLoading, setIsLoading] = useState("false");
   useEffect(() => {
