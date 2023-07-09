@@ -46,10 +46,10 @@ export const OrderList = () => {
               {listFiles.map((file, index) => {
                 return (
                   <div key={index}>
-                    <table className="min-w-full bg-white border border-gray-300 mb-4">
+                    <table className="min-w-full bg-white border border-gray-300 mb-4 dark:text-dark">
                       <thead>
                         <tr>
-                          <th className="py-2 px-4 border-b">Estado</th>
+                          <th className="py-2 px-4 border-b ">Estado</th>
                           <th className="py-2 px-4 border-b">Courier</th>              
                         </tr>
                       </thead>
