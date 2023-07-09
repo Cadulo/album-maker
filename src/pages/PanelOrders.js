@@ -1,4 +1,3 @@
-import { MongoViewer } from "../components/Viewers/MongoViewer";
 import { useEffect, useState } from "react";
 import Navbar from "../components/navbar";
 import { useOrder } from "../context/OrderContext";
@@ -7,8 +6,7 @@ import { useAuth } from "../context/AuthContext";
 
 export const PanelOrders = () => {
   const { user } = useAuth();
-  const { getOrderAdmin, getBill, getShipping } = useOrder();
-  const [showImages, setShowImages] = useState(false);
+  const { getOrderAdmin} = useOrder();
   const [isLoading, setIsLoading] = useState(false);
   const [listFiles, setListFiles] = useState([]);
   useEffect(() => {
@@ -25,7 +23,7 @@ export const PanelOrders = () => {
     };
     fetchData();
   }, []);
-  if (user.isAdmin || user.username == "admin") {
+  if (user.isAdmin || user.username === "admin") {
     return (
       <div className="container mx-auto dark:text-white  dark:bg-slate-900">
         <Navbar></Navbar>
@@ -53,7 +51,7 @@ export const PanelOrders = () => {
                 {listFiles.map((file, index) => {
                   return (
                     <div key={index}>
-                    <table className="min-w-full bg-white border border-gray-300 mb-4">
+                    <table className="min-w-full bg-white border border-gray-300 mb-4 dark:text-dark">
                       <thead>
                         <tr>
                           <th className="py-2 px-4 border-b">Estado</th>

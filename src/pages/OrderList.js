@@ -1,12 +1,12 @@
-import { MongoViewer } from "../components/Viewers/MongoViewer";
+
 import { useEffect, useState } from "react";
 import Navbar from "../components/navbar";
 import { useOrder } from "../context/OrderContext";
 import { Order } from "../components/Order";
 
 export const OrderList = () => {
-  const { getOrder, getBill, getShipping } = useOrder();
-  const [showImages, setShowImages] = useState(false);
+  const { getOrder } = useOrder();
+  
   const [isLoading, setIsLoading] = useState(false);
   const [listFiles, setListFiles] = useState([]);
   useEffect(() => {
