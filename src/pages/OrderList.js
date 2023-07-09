@@ -9,8 +9,7 @@ export const OrderList = () => {
   const { getOrder } = useOrder();
   const [isLoading, setIsLoading] = useState(false);
   const [listFiles, setListFiles] = useState([]);
-  const [showBotton, setShowBotton] = useState(false)
-  setShowBotton(true)
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -67,7 +66,7 @@ export const OrderList = () => {
                       shippingId={file.shipping}
                       orderId={file._id}
                       key={index}
-                      showBotton={showBotton}
+                      showBotton={true}
                     ></Order>
                   </div>
                 );
