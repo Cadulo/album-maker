@@ -1,5 +1,5 @@
 import { createContext, useState, useContext, useEffect } from 'react'
-import { registerRequest, loginRequest, verifyTokenRequest } from '../api/auth.api'
+import { registerRequest, loginRequest, verifyTokenRequest,logoutRequest } from '../api/auth.api'
 
 import Cookies from 'js-cookie'
 
@@ -49,10 +49,16 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
-    const logout = () => {
-        Cookies.remove("token");
-        setUser(null);
-        setIsAuthenticated(false);
+    const logout = async () => {
+        try {
+            await logoutRequest()
+            Cookies.remove("token");
+            setUser(null);
+            setIsAuthenticated(false);
+        } catch (error) {
+            
+        }
+      
       };
 
     //Despues de 5 segundos se eliminan los errores para que deje de ense;ar en pantalla
